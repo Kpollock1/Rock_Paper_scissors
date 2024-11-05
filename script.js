@@ -34,25 +34,25 @@ function getHumanChoice() {
 let humanScore = 0
 let computerScore = 0
 
+while (humanScore || computerScore < 5)
 
-
-function playRound(humanSelection, computerSelection) {
-
+function playRound() {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
     
     if (humanSelection === computerSelection) {
-        console.log("It's a tie!")
-    } else if (humanScore === "rock" && computerSelection === "scissors") {
-        console.log("You win! Rock beats scissors.")
-    } else if (humanScore === "paper" && computerSelection === "rock") {
-        console.log("You win! Paper beats rock.")
-    } else if (humanScore === "scissors" && computerSelection === "paper") {
-        console.log("You win! scissors beats paper.") 
+        console.log("It's a tie!");
+    } else if (humanSelection === "rock" && computerSelection === "scissors") {
+        console.log("You win! Rock beats scissors.");
+    } else if (humanSelection === "paper" && computerSelection === "rock") {
+        console.log("You win! Paper beats rock.");
+    } else if (humanSelection === "scissors" && computerSelection === "paper") {
+        console.log("You win! scissors beats paper.") ;
     } else {
-        console.log("You lose.")
-    };
+        console.log("You lose.");
+    }cs
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+
 
 playRound()
