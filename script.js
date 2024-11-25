@@ -57,5 +57,5 @@ function playRound() {
 while (humanScore < 5 && computerScore < 5) {
     playRound();
     console.log(`${humanScore} to ${computerScore}`);
-    
+
 }
