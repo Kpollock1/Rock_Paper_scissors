@@ -1,7 +1,8 @@
+
 // Get a random number and convert it into "rock, paper, or scissors"
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * (3 - 1 + 1) + 1);
-    
+
     // Pick rock, paper, scissors based on what number is generated
     if (choice === 1) {
         return "rock";
@@ -12,50 +13,53 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let choice = prompt().toLowerCase();
+const choiceRock = document.querySelector("button.rock");
+choiceRock.addEventListener("click", () => playRound(""));
 
-    if (choice === "rock" 
-        || choice === "paper" 
-        || choice === "scissors") {
-        console.log(`you chose ${choice}`);
-        } else {
-            console.log("Not an option");
-        }
-    
-    return choice;
-}
+const choicePaper = document.querySelector("button.paper");
+choicePaper.addEventListener("click", () => playRound("paper"));
+
+const choiceScissors = document.querySelector("button.scissors");
+choiceScissors.addEventListener("click", () => playRound("scissors"));
+
 
 let humanScore = 0
 let computerScore = 0
 
-
-
-
-function playRound() {
-    const humanSelection = getHumanChoice();
+function playRound(humanSelection) {
     const computerSelection = getComputerChoice();
-    
+
     if (humanSelection === computerSelection) {
-        console.log("It's a tie!");
+        announcement("It's a tie!");
     } else if (humanSelection === "rock" && computerSelection === "scissors") {
-        console.log("You win! Rock beats scissors.");
+        announcement("You win! Rock beats scissors.");
         humanScore = ++humanScore;
     } else if (humanSelection === "paper" && computerSelection === "rock") {
-        console.log("You win! Paper beats rock.");
+        announcement("You win! Paper beats rock.");
         humanScore = ++humanScore;
     } else if (humanSelection === "scissors" && computerSelection === "paper") {
-        console.log("You win! scissors beats paper.") ;
+        announcement("You win! scissors beats paper.");
         humanScore = ++humanScore;
     } else {
-        console.log("You lose.");
-        computerScore = ++computerScore
+        announcement("You lose.");
+        computerScore = ++computerScore;
+    }
+
+    console.log(`${humanScore} to ${computerScore}`);
+
+    if (humanScore >= 5) {
+        announcement("You are the winner!")
+    }
+
+    if (computerScore >= 5) {
+        announcement("You are the loser!")
     }
 }
 
-
-while (humanScore < 5 && computerScore < 5) {
-    playRound();
-    console.log(`${humanScore} to ${computerScore}`);
-
+function announcement(message) {
+    const winner = document.querySelector("#winner");
+    const content = document.createElement("div")
+    content.classList.add("content");
+    content.textContent = message;
+    winner.appendChild(content);
 }
